@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selamat Lulus, Kania Rahma Ditta 🌻</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #E8A317;
+    --gold-light: #F5C842;
+    --gold-pale: #FDF3D0;
+    --cream: #FFFBF0;
+    --brown: #6B3F0F;
+    --brown-dark: #3D2208;
+    --green-stem: #4A6741;
+    --green-leaf: #5C8A4E;
+    --petal: #F4B942;
+    --petal-dark: #D4920E;
+    --white: #FFFFFF;
+    --text-main: #2C1A08;
+    --text-muted: #8B6914;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-main);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 20px; height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, opacity 0.2s;
+    mix-blend-mode: multiply;
+  }
+  .cursor-trail {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--gold-light);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+    transition: all 0.15s ease;
+  }
+
+  /* ============ HERO SECTION ============ */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(160deg, #FFFBF0 0%, #FEF3C7 40%, #FDE68A 80%, #FCD34D 100%);
+  }
+
+  /* Parallax background layers */
+  .parallax-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+  .bg-c1 { width: 600px; height: 600px; background: var(--gold); top: -200px; right: -150px; }
+  .bg-c2 { width: 400px; height: 400px; background: var(--petal); bottom: -100px; left: -100px; }
+  .bg-c3 { width: 200px; height: 200px; background: var(--gold-light); top: 30%; left: 5%; }
+
+  /* Falling petals */
+  .petal-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    overflow: hidden;
+  }
+  .falling-petal {
+    position: absolute;
+    top: -30px;
+    width: 14px;
+    height: 10px;
+    border-radius: 50% 0 50% 0;
+    animation: petalFall linear infinite;
+    opacity: 0.85;
+  }
+  @keyframes petalFall {
+    0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.9; }
+    25% { transform: translateY(25vh) rotate(90deg) translateX(20px); }
+    50% { transform: translateY(50vh) rotate(180deg) translateX(-15px); }
+    75% { transform: translateY(75vh) rotate(270deg) translateX(25px); }
+    100% { transform: translateY(110vh) rotate(360deg) translateX(0); opacity: 0; }
+  }
+
+  /* Confetti */
+  .confetti-piece {
+    position: absolute;
+    top: -10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    animation: confettiFall linear infinite;
+    opacity: 0;
+  }
+  @keyframes confettiFall {
+    0% { opacity: 0; transform: translateY(0) rotate(0deg); }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Bouquet */
+  .bouquet-wrapper {
+    position: relative;
+    width: 320px;
+    height: 360px;
+    margin-bottom: 2rem;
+  }
+
+  .sunflower {
+    position: absolute;
+    transform-origin: bottom center;
+    animation: flowerSway 3s ease-in-out infinite, flowerFloat 4s ease-in-out infinite;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+  .sunflower:nth-child(1) { bottom: 80px; left: 50%; transform: translateX(-50%); animation-delay: 0.2s; }
+  .sunflower:nth-child(2) { bottom: 60px; left: 30%; animation-delay: 0.6s; }
+  .sunflower:nth-child(3) { bottom: 60px; right: 28%; animation-delay: 1s; }
+  .sunflower:nth-child(4) { bottom: 40px; left: 18%; animation-delay: 1.4s; }
+  .sunflower:nth-child(5) { bottom: 40px; right: 16%; animation-delay: 1.8s; }
+
+  @keyframes flowerFloat {
+    0%, 100% { transform: translateY(0) translateX(var(--tx, -50%)); }
+    50% { transform: translateY(-10px) translateX(var(--tx, -50%)); }
+  }
+  @keyframes flowerSway {
+    0%, 100% { rotate: 0deg; }
+    33% { rotate: -3deg; }
+    66% { rotate: 3deg; }
+  }
+  @keyframes flowerAppear {
+    from { opacity: 0; transform: translateY(30px) scale(0.7); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .sunflower { animation: flowerAppear 0.8s ease forwards, flowerSway 3s ease-in-out 1s infinite, flowerFloat 4s ease-in-out 1s infinite; }
+
+  .stem {
+    width: 6px;
+    height: 120px;
+    background: linear-gradient(to top, var(--green-stem), var(--green-leaf));
+    border-radius: 3px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .stem::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 30px;
+    width: 28px; height: 16px;
+    background: var(--green-leaf);
+    border-radius: 0 50% 0 50%;
+    transform: rotate(-20deg);
+  }
+  .stem::after {
+    content: '';
+    position: absolute;
+    right: 6px; top: 55px;
+    width: 24px; height: 14px;
+    background: var(--green-leaf);
+    border-radius: 50% 0 50% 0;
+    transform: rotate(20deg);
+  }
+
+  .flower-head {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    margin: 0 auto;
+  }
+  .flower-head.sm { width: 64px; height: 64px; }
+  .flower-head.xs { width: 54px; height: 54px; }
+
+  .petals {
+    position: absolute;
+    inset: 0;
+    animation: petalSpin 12s linear infinite;
+  }
+  @keyframes petalSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .petal-el {
+    position: absolute;
+    width: 26px;
+    height: 36px;
+    background: linear-gradient(to bottom, var(--gold-light), var(--petal));
+    border-radius: 50% 50% 20% 20%;
+    transform-origin: bottom center;
+    left: 50%; top: 50%;
+    margin-left: -13px; margin-top: -36px;
+  }
+  .flower-head.sm .petal-el { width: 20px; height: 28px; margin-left: -10px; margin-top: -28px; }
+  .flower-head.xs .petal-el { width: 16px; height: 24px; margin-left: -8px; margin-top: -24px; }
+
+  .center-disk {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 34px; height: 34px;
+    background: radial-gradient(circle at 40% 40%, #8B5E0A, #4A2D05);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .flower-head.sm .center-disk { width: 26px; height: 26px; }
+  .flower-head.xs .center-disk { width: 22px; height: 22px; }
+  .center-disk::after {
+    content: '';
+    width: 60%; height: 60%;
+    background: radial-gradient(circle, #C4860A, #7A4208);
+    border-radius: 50%;
+  }
+
+  .bouquet-wrap-ribbon {
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 100px; height: 60px;
+  }
+  .ribbon-shape {
+    width: 90px; height: 50px;
+    background: linear-gradient(135deg, #F9C74F, #F4A261);
+    border-radius: 50% 50% 10px 10px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(244,162,97,0.4);
+  }
+  .ribbon-shape::before, .ribbon-shape::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 35px; height: 30px;
+    background: linear-gradient(135deg, #F9C74F, #F4A261);
+    border-radius: 50%;
+  }
+  .ribbon-shape::before { left: 5px; transform: rotate(-15deg); }
+  .ribbon-shape::after { right: 5px; transform: rotate(15deg); }
+
+  /* Hero text */
+  .hero-text {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
+  }
+  .tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 2.5s forwards;
+  }
+  .main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    color: var(--brown-dark);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 2.8s forwards;
+  }
+  .main-title span {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .typing-line {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-style: italic;
+    color: var(--brown);
+    margin-top: 0.5rem;
+    min-height: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 3.1s forwards;
+  }
+  .typing-cursor {
+    display: inline-block;
+    width: 2px; height: 1.2em;
+    background: var(--gold);
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 0.8s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 4s forwards;
+  }
+  .scroll-hint span {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .scroll-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: bounce 1.5s ease infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+  /* ============ PROFILE SECTION ============ */
+  #profile {
+    padding: 6rem 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .profile-photo-wrap {
+    width: 160px; height: 160px;
+    margin: 0 auto 2rem;
+    position: relative;
+  }
+  .profile-photo-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: conic-gradient(var(--gold-light), var(--petal), var(--gold-light));
+    animation: spinSlow 8s linear infinite;
+  }
+  @keyframes spinSlow { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+  .profile-photo {
+    position: relative;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--cream);
+    background: linear-gradient(135deg, #FEE3A8, #FBBF24);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--brown-dark);
+    object-fit: cover;
+  }
+  .profile-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--brown-dark);
+    margin-bottom: 0.4rem;
+  }
+  .profile-school {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  .quote-box {
+    background: linear-gradient(135deg, rgba(248,196,64,0.15), rgba(244,185,66,0.08));
+    border: 1px solid rgba(232,163,23,0.25);
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    position: relative;
+  }
+  .quote-box::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.3;
+    position: absolute;
+    top: -10px; left: 20px;
+    line-height: 1;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--brown);
+    line-height: 1.7;
+  }
+
+  /* ============ GALLERY SECTION ============ */
+  #gallery {
+    padding: 4rem 2rem 6rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 600;
+    color: var(--brown-dark);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0.5rem auto 2.5rem;
+    color: var(--gold);
+    font-size: 1.2rem;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .gallery-item {
+    aspect-ratio: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: linear-gradient(135deg, #FEE3A8, #FCD34D);
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .gallery-item:hover { transform: scale(1.05) rotate(-1deg); z-index: 2; }
+  .gallery-item:nth-child(2):hover { transform: scale(1.05) rotate(1deg); }
+  .gallery-item:nth-child(even):hover { transform: scale(1.05) rotate(0.5deg); }
+  .gallery-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 2rem;
+  }
+  .gallery-placeholder span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    color: var(--brown);
+    opacity: 0.6;
+    letter-spacing: 0.05em;
+  }
+  .gallery-item:nth-child(1) { background: linear-gradient(135deg, #FDE68A, #FBB724); }
+  .gallery-item:nth-child(2) { background: linear-gradient(135deg, #FEF3C7, #FCD34D); }
+  .gallery-item:nth-child(3) { background: linear-gradient(135deg, #FDE68A, #F59E0B); }
+  .gallery-item:nth-child(4) { background: linear-gradient(135deg, #FFFBEB, #FDE68A); }
+  .gallery-item:nth-child(5) { background: linear-gradient(135deg, #FCD34D, #F59E0B); }
+  .gallery-item:nth-child(6) { background: linear-gradient(135deg, #FEF3C7, #FDE68A); }
+  .gallery-item.big { grid-column: span 2; aspect-ratio: 2/1; }
+
+  /* ============ LETTER SECTION ============ */
+  #letter {
+    padding: 6rem 2rem;
+    background: linear-gradient(180deg, var(--cream) 0%, #FEF9EC 50%, var(--cream) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  #letter::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(232,163,23,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .letter-card {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #FFFEF8;
+    border: 1px solid rgba(232,163,23,0.2);
+    border-radius: 24px;
+    padding: 3rem 3.5rem;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(180,120,20,0.1), 0 4px 16px rgba(180,120,20,0.06);
+  }
+  .letter-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 4px;
+    background: linear-gradient(to right, var(--gold-light), var(--petal), var(--gold-light));
+    border-radius: 0 0 4px 4px;
+  }
+  .letter-stamp {
+    position: absolute;
+    top: -18px; right: 40px;
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, var(--gold), var(--petal-dark));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 4px 12px rgba(232,163,23,0.3);
+    transform: rotate(8deg);
+  }
+  .letter-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+  .letter-dear {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 1.2rem;
+  }
+  .letter-body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.97rem;
+    line-height: 1.85;
+    color: var(--text-main);
+    opacity: 0.85;
+  }
+  .letter-body p { margin-bottom: 1rem; }
+  .letter-sig {
+    margin-top: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--brown);
+    font-size: 1.05rem;
+  }
+  .letter-sig .sig-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--brown-dark);
+    display: block;
+    margin-top: 0.2rem;
+  }
+  .letter-flowers {
+    display: flex;
+    gap: 6px;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+  }
+  .letter-lines {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      transparent, transparent 31px,
+      rgba(232,163,23,0.06) 31px, rgba(232,163,23,0.06) 32px
+    );
+    border-radius: 24px;
+    pointer-events: none;
+    margin: 64px 40px 40px;
+  }
+
+  /* ============ CLOSING ============ */
+  #closing {
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    background: linear-gradient(to bottom, var(--cream), #FDE68A 60%, var(--petal));
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-big {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 7vw, 4rem);
+    font-weight: 700;
+    color: var(--brown-dark);
+    line-height: 1.2;
+  }
+  .closing-big span { color: var(--brown); font-style: italic; }
+  .closing-sub {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--brown);
+    opacity: 0.8;
+    font-weight: 300;
+  }
+  .footer-note {
+    margin-top: 4rem;
+    font-size: 0.75rem;
+    color: var(--brown);
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+  }
+
+  /* ============ SECTION ANIMATIONS ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item.big { grid-column: span 2; }
+    .letter-card { padding: 2rem 1.5rem; }
+    .bouquet-wrapper { width: 260px; height: 300px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- Falling petals container -->
+<div class="petal-container" id="petalContainer"></div>
+
+<!-- ==================== HERO ==================== -->
+<section id="hero">
+  <div class="parallax-bg" id="parallaxBg">
+    <div class="bg-circle bg-c1"></div>
+    <div class="bg-circle bg-c2"></div>
+    <div class="bg-circle bg-c3"></div>
+  </div>
+
+  <!-- Bouquet -->
+  <div class="bouquet-wrapper" aria-hidden="true">
+
+    <!-- Flower 1 - center (tallest) -->
+    <div class="sunflower" style="--tx:-50%">
+      <div class="flower-head">
+        <div class="petals">
+          <div class="petal-el" style="transform: rotate(0deg)"></div>
+          <div class="petal-el" style="transform: rotate(45deg)"></div>
+          <div class="petal-el" style="transform: rotate(90deg)"></div>
+          <div class="petal-el" style="transform: rotate(135deg)"></div>
+          <div class="petal-el" style="transform: rotate(180deg)"></div>
+          <div class="petal-el" style="transform: rotate(225deg)"></div>
+          <div class="petal-el" style="transform: rotate(270deg)"></div>
+          <div class="petal-el" style="transform: rotate(315deg)"></div>
+        </div>
+        <div class="center-disk"></div>
+      </div>
+      <div class="stem"></div>
+    </div>
+
+    <!-- Flower 2 - left -->
+    <div class="sunflower" style="--tx:0">
+      <div class="flower-head sm">
+        <div class="petals">
+          <div class="petal-el" style="transform: rotate(0deg)"></div>
+          <div class="petal-el" style="transform: rotate(45deg)"></div>
+          <div class="petal-el" style="transform: rotate(90deg)"></div>
+          <div class="petal-el" style="transform: rotate(135deg)"></div>
+          <div class="petal-el" style="transform: rotate(180deg)"></div>
+          <div class="petal-el" style="transform: rotate(225deg)"></div>
+          <div class="petal-el" style="transform: rotate(270deg)"></div>
+          <div class="petal-el" style="transform: rotate(315deg)"></div>
+        </div>
+        <div class="center-disk"></div>
+      </div>
+      <div class="stem" style="height:100px"></div>
+    </div>
+
+    <!-- Flower 3 - right -->
+    <div class="sunflower" style="--tx:0">
+      <div class="flower-head sm">
+        <div class="petals" style="animation-direction:reverse">
+          <div class="petal-el" style="transform: rotate(22deg)"></div>
+          <div class="petal-el" style="transform: rotate(67deg)"></div>
+          <div class="petal-el" style="transform: rotate(112deg)"></div>
+          <div class="petal-el" style="transform: rotate(157deg)"></div>
+          <div class="petal-el" style="transform: rotate(202deg)"></div>
+          <div class="petal-el" style="transform: rotate(247deg)"></div>
+          <div class="petal-el" style="transform: rotate(292deg)"></div>
+          <div class="petal-el" style="transform: rotate(337deg)"></div>
+        </div>
+        <div class="center-disk"></div>
+      </div>
+      <div class="stem" style="height:100px"></div>
+    </div>
+
+    <!-- Flower 4 - far left small -->
+    <div class="sunflower" style="--tx:0">
+      <div class="flower-head xs">
+        <div class="petals">
+          <div class="petal-el" style="transform: rotate(0deg)"></div>
+          <div class="petal-el" style="transform: rotate(60deg)"></div>
+          <div class="petal-el" style="transform: rotate(120deg)"></div>
+          <div class="petal-el" style="transform: rotate(180deg)"></div>
+          <div class="petal-el" style="transform: rotate(240deg)"></div>
+          <div class="petal-el" style="transform: rotate(300deg)"></div>
+        </div>
+        <div class="center-disk"></div>
+      </div>
+      <div class="stem" style="height:80px"></div>
+    </div>
+
+    <!-- Flower 5 - far right small -->
+    <div class="sunflower" style="--tx:0">
+      <div class="flower-head xs">
+        <div class="petals" style="animation-direction:reverse">
+          <div class="petal-el" style="transform: rotate(30deg)"></div>
+          <div class="petal-el" style="transform: rotate(90deg)"></div>
+          <div class="petal-el" style="transform: rotate(150deg)"></div>
+          <div class="petal-el" style="transform: rotate(210deg)"></div>
+          <div class="petal-el" style="transform: rotate(270deg)"></div>
+          <div class="petal-el" style="transform: rotate(330deg)"></div>
+        </div>
+        <div class="center-disk"></div>
+      </div>
+      <div class="stem" style="height:80px"></div>
+    </div>
+
+    <!-- Ribbon/wrap -->
+    <div class="bouquet-wrap-ribbon">
+      <div class="ribbon-shape"></div>
+    </div>
+  </div>
+
+  <!-- Hero text -->
+  <div class="hero-text">
+    <p class="tagline">✦ SMA Negeri 10 Bekasi ✦</p>
+    <h1 class="main-title">Selamat Lulus,<br><span>Kania Rahma Ditta</span></h1>
+    <p class="typing-line" id="typingLine"><span class="typing-cursor"></span></p>
+  </div>
+
+  
+</section>
+
+<!-- ==================== PROFILE ==================== -->
+<section id="profile">
+  <div class="reveal">
+    <p class="section-label">✦ Selamat ✦</p>
+    <div class="profile-photo-wrap">
+      <img src="ca.webp" class="profile-photo" alt="Profile Photo">
+    </div>
+    <h2 class="profile-name">Kania Rahma Ditta</h2>
+    <p class="profile-school">SMA Negeri 10 Bekasi · Angkatan 2026</p>
+    <div class="quote-box">
+      <p class="quote-text">
+        "Setiap pagi, bunga matahari selalu tahu arah mana yang harus dituju —
+        menghadap cahaya. Begitu pula kamu, Kania. Tetaplah tumbuh,
+        tetaplah bersinar, dan jangan pernah berhenti mengejar cahayamu."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GALLERY ==================== -->
+<!--
+<section id="gallery">
+  <div class="reveal">
+    <h2 class="section-title">Galeri Kenangan</h2>
+    <div class="divider">🌻</div>
+    <div class="gallery-grid">
+      <div class="gallery-item big">
+        <div class="gallery-placeholder">📸<span>Foto Kenangan</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">🎓<span>Wisuda</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">👩‍🎓<span>Toga</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">🌸<span>Teman</span></div>
+      </div>
+      <div class="gallery-item big">
+        <div class="gallery-placeholder">🏫<span>Sekolah</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+
+<!-- ==================== LETTER ==================== -->
+<section id="letter">
+  <div class="reveal">
+    <h2 class="section-title" style="text-align:center; margin-bottom:0.5rem">Surat Untukmu</h2>
+    <div class="divider">💌</div>
+    <div class="letter-card">
+      <div class="letter-stamp">💌</div>
+      <div class="letter-lines" aria-hidden="true"></div>
+      <p class="letter-date">Rabu, 2026</p>
+      <p class="letter-dear">Untuk Kania Rahma Ditta yang aku banggakan,</p>
+      <div class="letter-body">
+        <p>
+          Hari ini adalah salah satu hari yang paling berharga dalam hidupmu.
+          Bertahun-tahun kamu berjuang — melewati pagi-pagi yang lelah,
+          malam-malam yang penuh coret-coretan buku, dan hari-hari yang
+          kadang terasa berat. Tapi kamu tetap ada. Kamu tetap melangkah.
+        </p>
+        <p>
+          Kelulusanmu bukan hanya soal ijazah — ini adalah bukti nyata
+          bahwa kamu mampu menyelesaikan apa yang kamu mulai. Dan itu,
+          Kania, adalah sesuatu yang tidak semua orang bisa lakukan.
+        </p>
+        <p>
+          Dunia di luar sana sudah menunggumu dengan segala kemungkinan
+          yang belum pernah kamu bayangkan. Pergilah, jadilah versi dirimu
+          yang paling berani. Jadilah bunga matahari — yang selalu
+          mencari cahaya, bahkan di hari-hari mendung sekalipun.
+        </p>
+        <p>
+          Selamat, Kania. Ini baru permulaan. 🌻
+        </p>
+      </div>
+      <div class="letter-sig">
+        Dengan sepenuh hati,
+        <span class="sig-name">Orang-orang yang mencintaimu</span>
+      </div>
+      <div class="letter-flowers" aria-hidden="true">🌻🌼🌻🌼🌻</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CLOSING ==================== -->
+<section id="closing">
+  <div class="reveal">
+    <p class="closing-big">Selamat<br><span>Menuju Babak Baru</span></p>
+    <p class="closing-sub">🌻 Kania Rahma Ditta · Angkatan 2026 🌻</p>
+    <p class="footer-note" style="margin-top:3rem">SMA Negeri 10 Bekasi · DIBUAT OLEH kvkn</p>
+  </div>
+</section>
+
+<script>
+  // === CURSOR ===
+  const cursor = document.getElementById('cursor');
+  const trail = document.getElementById('cursorTrail');
+  let tx = 0, ty = 0;
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => {
+      trail.style.left = e.clientX + 'px';
+      trail.style.top = e.clientY + 'px';
+    }, 80);
+  });
+
+  // === PARALLAX ===
+  const parallaxBg = document.getElementById('parallaxBg');
+  document.addEventListener('mousemove', e => {
+    const xp = (e.clientX / window.innerWidth - 0.5) * 30;
+    const yp = (e.clientY / window.innerHeight - 0.5) * 20;
+    parallaxBg.style.transform = `translate(${xp}px, ${yp}px)`;
+    // Also move bouquet slightly
+    const bouquet = document.querySelector('.bouquet-wrapper');
+    if (bouquet) {
+      bouquet.style.transform = `translate(${xp * 0.3}px, ${yp * 0.2}px)`;
+    }
+  });
+
+  // === FALLING PETALS ===
+  const container = document.getElementById('petalContainer');
+  const petalColors = [
+    '#F4B942','#F9C74F','#E8A317','#FCD34D',
+    '#FBB724','#FBBF24','#F59E0B','#FDE68A'
+  ];
+  function createPetal() {
+    const p = document.createElement('div');
+    p.className = 'falling-petal';
+    const size = 8 + Math.random() * 10;
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      width: ${size}px;
+      height: ${size * 0.7}px;
+      background: ${petalColors[Math.floor(Math.random() * petalColors.length)]};
+      animation-duration: ${5 + Math.random() * 6}s;
+      animation-delay: ${Math.random() * 5}s;
+      transform: rotate(${Math.random() * 360}deg);
+      opacity: ${0.5 + Math.random() * 0.4};
+      border-radius: ${Math.random() > 0.5 ? '50% 0 50% 0' : '50% 50% 20% 20%'};
+    `;
+    container.appendChild(p);
+    setTimeout(() => p.remove(), 12000);
+  }
+  // Spawn petals
+  setInterval(createPetal, 400);
+  for (let i = 0; i < 15; i++) setTimeout(createPetal, i * 200);
+
+  // === TYPING ANIMATION ===
+  const texts = [
+    'Selamat atas kelulusanmu 🌻',
+    'Kamu luar biasa, Kania!',
+    'Masa depan cerah menantimu ✨',
+    'Teruslah bersinar seperti bunga matahari 🌸'
+  ];
+  let tIdx = 0, cIdx = 0, deleting = false;
+  const typingEl = document.getElementById('typingLine');
+  function type() {
+    const current = texts[tIdx];
+    if (!deleting) {
+      cIdx++;
+      typingEl.innerHTML = current.slice(0, cIdx) + '<span class="typing-cursor"></span>';
+      if (cIdx === current.length) {
+        deleting = true;
+        setTimeout(type, 2200);
+        return;
+      }
+      setTimeout(type, 70);
+    } else {
+      cIdx--;
+      typingEl.innerHTML = current.slice(0, cIdx) + '<span class="typing-cursor"></span>';
+      if (cIdx === 0) {
+        deleting = false;
+        tIdx = (tIdx + 1) % texts.length;
+        setTimeout(type, 400);
+        return;
+      }
+      setTimeout(type, 35);
+    }
+  }
+  setTimeout(type, 3500);
+
+  // === SCROLL REVEAL ===
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => obs.observe(el));
+
+  // Mobile: no custom cursor
+  if ('ontouchstart' in window) {
+    cursor.style.display = 'none';
+    trail.style.display = 'none';
+    document.body.style.cursor = 'auto';
+  }
+</script>
+</body>
+</html>
